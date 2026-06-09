@@ -18,4 +18,6 @@ Many existing platforms are either too complex or lack features that encourage e
 - Efficient data management
 - Secure user interactions
 
+
+
   ~ RUDHRA KARTHIKEYAN
