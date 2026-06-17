@@ -19,12 +19,6 @@ Many existing platforms are either too complex or lack features that encourage e
 - Python (if applicable)
 - MySQL (if applicable)
 
-## System Architecture
-![System Architecture](diagrams/architecture.png)
-
-## Use Case Diagram
-![Use Case Diagram](diagrams/usecase.png)
-
 ## Features
 - User-friendly interface
 - Responsive design
