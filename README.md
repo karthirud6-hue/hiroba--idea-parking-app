@@ -19,8 +19,8 @@ Many existing platforms are either too complex or lack features that encourage e
 - HTML
 - CSS
 - JavaScript
-- Python (if applicable)
-- MySQL (if applicable)
+- Python 
+- MySQL 
 
 ## Features
 - User-friendly interface
