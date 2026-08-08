@@ -71,12 +71,11 @@ async function seedDefaultLots(userId) {
   await supabase.from('lots').insert(lotsWithUser);
 }
 
-async function loadSakura() {
-  try { const r = await window.storage.get("sakura_cards"); return r ? JSON.parse(r.value) : []; }
-  catch { return []; }
-}
-async function saveSakura(cards) {
-  try { await window.storage.set("sakura_cards", JSON.stringify(cards)); } catch {}
+async function loadSakura(userId) {
+  try {
+    const { data } = await supabase.from('sakura_cards').select('*').eq('user_id', userId);
+    return (data || []).map(c => ({ ...c, createdAt: c.createdAt || c.created_at }));
+  } catch { return []; }
 }
 
 function timeAgo(ts) {
@@ -433,10 +432,8 @@ export default function Hiroba() {
       }); }
       setLoaded(true);
     });
-    loadSakura().then(setSakuraCards);
+    loadSakura(user.id).then(setSakuraCards);
   },[user]);
-
-  useEffect(()=>{ if(loaded) saveSakura(sakuraCards); },[sakuraCards,loaded]);
 
   const currentLot=lots.find(l=>l.id===activeLot);
   const currentIdeas=activeLot?(ideas[activeLot]||[]):[];
@@ -488,9 +485,20 @@ export default function Hiroba() {
     setOutputs(p=>({...p,[idea.id]:{...result,running:false}}));
     setRunningId(null);
   }
-  function addCard(data){setSakuraCards(p=>[{id:Date.now().toString(),...data,createdAt:Date.now(),score:{know:0,dontknow:0}},...p]);}
-  function updateCard(id,data){setSakuraCards(p=>p.map(c=>c.id===id?{...c,...data}:c));}
-  function deleteCard(id){setSakuraCards(p=>p.filter(c=>c.id!==id));}
+  async function addCard(data){
+    const card = {id:Date.now().toString(),...data,createdAt:Date.now(),score:{know:0,dontknow:0},user_id:user.id};
+    const { error } = await supabase.from('sakura_cards').insert([card]);
+    if (error) { console.error("Sakura card insert failed:", error); return; }
+    setSakuraCards(p=>[card,...p]);
+  }
+  async function updateCard(id,data){
+    await supabase.from('sakura_cards').update(data).eq('id', id);
+    setSakuraCards(p=>p.map(c=>c.id===id?{...c,...data}:c));
+  }
+  async function deleteCard(id){
+    await supabase.from('sakura_cards').delete().eq('id', id);
+    setSakuraCards(p=>p.filter(c=>c.id!==id));
+  }
 
   async function handleLogout() {
     await supabase.auth.signOut();
