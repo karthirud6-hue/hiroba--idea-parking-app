@@ -1,16 +1,40 @@
-# React + Vite
+# Hiroba 🌸
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Link
+hiroba.vercel.app
 
-Currently, two official plugins are available:
+## Abstract
+Hiroba is a personal idea-parking and study web application designed to help students organize their ideas, goals, and code snippets — all in one place, powered by AI. It uses React, Supabase, and Google Gemini to provide cloud persistence, Python code execution, Japanese flashcard study, and an AI companion named Hiroshi.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Problem Statement
+Students often lose valuable ideas because they are scattered across multiple platforms with no single organized, personalized space to keep them. Hiroba addresses this by providing categorized parking lots, code execution, and AI-assisted brainstorming in one unified app.
 
-## React Compiler
+## Objectives
+- Provide a centralized platform to organize ideas, goals, and code snippets
+- Enable secure, per-user cloud data persistence
+- Offer free, in-browser Python code execution
+- Build an AI companion that reads and engages with parked ideas
+- Create a personalized Japanese study module
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
+- React 18 + Vite 8
+- Supabase (PostgreSQL + Auth)
+- Google Gemini API
+- Pyodide (Python in browser)
+- Vercel (deployment)
 
-## Expanding the ESLint configuration
+## Features
+- Categorized parking lots for ideas and goals
+- Code Vault with real-time Python execution
+- Sakura World — Japanese flashcards and practice mode
+- Hiroshi — AI companion with multiple personality modes
+- Secure user authentication with per-user data isolation
+- Progressive Web App (installable)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Future Enhancements
+- Java compiler support
+- Weekly AI-generated email digest
+- Mobile app version
+
+## Author
+RUDHRA KARTHIKEYAN
